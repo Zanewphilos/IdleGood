@@ -1,0 +1,12 @@
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp2.View"
+             x:Class="MauiApp2.View.TabbedBar">
+
+    <TabbedPage.Children>
+        <local:HomePage Title ="Home" IconImageSource="icon_homepage.png"/>
+        <local:PostItemPage  Title="Sell" IconImageSource="icon_sell.png"/>
+        <local:UserPage  Title="User" IconImageSource="icon_profile.png"/>
+    </TabbedPage.Children>
+
+</TabbedPage>

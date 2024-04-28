@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiApp2.ViewModel"
+             xmlns:view="clr-namespace:MauiApp2.View"
+             x:Class="MauiApp2.View.HomePage"
+             x:Name="MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel />
+    </ContentPage.BindingContext>
+
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <VerticalStackLayout Spacing="20">
+                <Label Text="Item Recommend" FontAttributes="Bold"/>
+                <CollectionView x:Name="ItemsYouMightLikeView"
+                                ItemsSource="{Binding ItemsYouMightLike}"
+                                ItemsLayout="HorizontalList" 
+                                HorizontalScrollBarVisibility="Always">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <view:ItemCard Item="{Binding}"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Text="Popular Item" FontAttributes="Bold"/>
+                <CollectionView x:Name="PopularItemsView"
+                                ItemsSource="{Binding PopularItems}" 
+                                ItemsLayout="HorizontalList" 
+                                HorizontalScrollBarVisibility="Always">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <view:ItemCard Item="{Binding}"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Text="All Item" FontAttributes="Bold"/>
+                <CollectionView x:Name="AllItemView"
+                                ItemsSource="{Binding AllItem}" 
+                                ItemsLayout="VerticalGrid, 2">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <view:ItemCard Item="{Binding}"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ActivityIndicator IsVisible="{Binding IsLoading}" 
+                           IsRunning="{Binding IsLoading}" 
+                           Color="DarkGreen"
+                           AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" 
+                           AbsoluteLayout.LayoutFlags="PositionProportional" />
+    </AbsoluteLayout>
+</ContentPage>

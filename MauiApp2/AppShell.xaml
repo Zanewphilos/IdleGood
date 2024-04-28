@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiApp2.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp2.View"
+    Title="MauiApp2">
+
+   
+    <!-- 主 TabBar 定义 -->
+    <TabBar>
+        <ShellContent Title="Home" Icon="Images/TabbedBar/icon_homepage.png" Route="home" ContentTemplate="{DataTemplate local:HomePage}" />
+        <!--<ShellContent Title="Search" Icon="Images/TabbedBar/icon_search.png" Route="search" ContentTemplate="{DataTemplate local:SearchPage}" />-->
+        <ShellContent Title="Sell" Icon="Images/TabbedBar/icon_sell.png" Route="sell" ContentTemplate="{DataTemplate local:PostItemPage}" />
+        <!-- Profile页面现在需要检查用户是否登录 -->
+        <ShellContent Title="Profile" Icon="Images/TabbedBar/icon_profile.png" Route="profile" ContentTemplate="{DataTemplate local:UserPage}" />
+    </TabBar>
+
+    <FlyoutItem Title="User Profile" Icon="user_menu.png">
+        <ShellContent ContentTemplate="{DataTemplate local:UserPage}" />
+    </FlyoutItem>
+
+   
+    <!-- 登录页面路由 -->
+    <ShellContent Route="login" ContentTemplate="{DataTemplate local:LoginPage}" />
+    <!-- 注册页面路由 -->
+    <ShellContent Route="register" ContentTemplate="{DataTemplate local:RegisterPage}" />
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="#FFFFFF"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}">
+                <Setter Property="Shell.ForegroundColor" Value="#BBFFFF" />
+                <Setter Property="Shell.TabBarTitleColor" Value="#333333"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#CCCCCC"/>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    
+
+</Shell>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.View.TransactionDetailPage"
+             xmlns:vm="clr-namespace:MauiApp2.ViewModel"
+             Title="Transaction Details">
+
+    <!-- BindingContext set in code behind or via navigation with parameter -->
+
+    <ScrollView>
+        
+        <VerticalStackLayout Spacing="10" Padding="20">
+
+            <ImageButton Source="back_icon.png"
+         HorizontalOptions="Start"
+         VerticalOptions="Start"
+         WidthRequest="40"
+         HeightRequest="40"
+         Clicked="OnBackButtonClicked" />
+            <!-- Displaying transaction details -->
+
+            <Label Text="Picture："
+               FontSize="Small"/>
+            
+            <Image Source="{Binding Transaction.FirstImageUrl}"
+                   Aspect="AspectFit"
+                   HeightRequest="200" />
+
+            
+            <Label Text="{Binding Transaction.ItemTitle}"
+                   FontSize="Medium"
+                   FontAttributes="Bold"/>
+            
+            <Label Text="BuyerName："
+               FontSize="Small"/>
+            <Label Text="{Binding Transaction.BuyerName}"
+                   FontSize="Small"/>
+
+            <Label Text="SellerName："
+               FontSize="Small"/>
+            <Label Text="{Binding Transaction.SellerName}"
+                   FontSize="Small"/>
+
+            <Label Text="TransactionStatus："
+            FontSize="Small"/>
+            <Label Text="{Binding Transaction.TransactionStatus}"
+                   FontSize="Small"/>
+
+            <Label Text="Time:"
+            FontSize="Small"/>
+            <Label Text="{Binding Transaction.TransactionDate, StringFormat='{0:MM/dd/yyyy}'}"
+                   FontSize="Small"/>
+
+
+            <Button Text="Update Transaction Status"
+        Command="{Binding UpdateTransactionStatusCommand}"
+        CommandParameter="{Binding Transaction.TransactionId}" />
+
+            <Button Text="Delete Transaction"
+        Command="{Binding DeleteTransactionCommand}"
+        CommandParameter="{Binding Transaction.TransactionId}" />
+           
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

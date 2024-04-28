@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.View.UserPage"
+             xmlns:vm="clr-namespace:MauiApp2.ViewModel"
+             xmlns:view="clr-namespace:MauiApp2.View"
+             x:Name="UserItemPage"
+             Title="User Profile">
+
+    <ContentPage.BindingContext>
+        <vm:UserPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="20" Padding="20">
+
+                <!-- 用户头像 -->
+            <Label Text="Avatar:" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Small"/>
+            <Image Source="{Binding Profile.UserIconUrl}"   
+                Aspect="AspectFill" 
+                HeightRequest="100" 
+                WidthRequest="100"
+                HorizontalOptions="Center" />
+
+            <!-- 用户名 -->
+            <Label Text="Name:" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Small"/>
+            <Label Text="{Binding Profile.UserName}" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" />
+
+            <!-- 邮箱地址 -->
+            <Label Text="Email:" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Small"/>
+            <Label Text="{Binding Profile.Email}" 
+               HorizontalOptions="Center" />
+
+            <!-- 地址 -->
+            <Label Text="Address:" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Small"/>
+            <Label Text="{Binding Profile.Address}" 
+               HorizontalOptions="Center" />
+
+            <!-- 自我介绍 -->
+            <Label Text="SelfIntro:" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Small"/>
+            <Label Text="{Binding Profile.SelfIntro}" 
+               HorizontalOptions="Center" />
+
+                <VerticalStackLayout Spacing="20" Padding="20">
+                    <Button Text="Modification of personal information" Clicked="OnEditProfileClicked"/>
+                    <Button Text="log out" Clicked="OnLogoutClicked"/>
+                    <Button Text="cancellation of account" Clicked="OnDeleteAccountClicked"/>
+
+                    <!-- 修改个人信息的表单 -->
+                    <StackLayout x:Name="EditProfileForm" IsVisible="False">
+                        <Entry x:Name="NameEntry" Placeholder="Name"/>
+                        <Entry x:Name="EmailEntry" Placeholder="Email"/>
+                        <Entry x:Name="AddressEntry" Placeholder="Address"/>
+                        <Editor x:Name="SelfIntroEditor" Placeholder="SelfIntro"/>
+                        <Button Text="Save" Clicked="OnSaveProfileClicked"/>
+                    </StackLayout>
+                </VerticalStackLayout>
+
+
+
+                <Label Text="MyItem" FontAttributes="Bold"/>
+                        <CollectionView x:Name="MyItemsView"
+                            ItemsSource="{Binding MyItem}"
+                            ItemsLayout="HorizontalList" 
+                            HorizontalScrollBarVisibility="Always">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                <view:ItemCard Item="{Binding}"/>
+                            </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    
+                
+           
+
+                            <!-- 交易历史标题 -->
+            <Label Text="Transaction History"
+                   FontAttributes="Bold"
+                   FontSize="Large"
+                   HorizontalOptions="Center" />
+
+            <!-- 交易历史列表 -->
+            <CollectionView ItemsSource="{Binding Transactions}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- 使用自定义的 TransactionCard 控件 -->
+                        <view:TransactionCard Transaction="{Binding}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+        <ActivityIndicator IsRunning="{Binding IsLoading}"
+                           IsVisible="{Binding IsLoading}"
+                           Color="DarkGreen"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           Grid.Row="0" />
+    </Grid>
+</ContentPage>

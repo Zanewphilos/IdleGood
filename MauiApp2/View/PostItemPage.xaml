@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.View.PostItemPage"
+             Title="Post Item For Sale">
+    <StackLayout Padding="20">
+        <Entry Placeholder="Title" Text="{Binding Title}" />
+        <Editor Placeholder="Description" Text="{Binding Description}" HeightRequest="100" />
+        <Entry Placeholder="Price" Keyboard="Numeric" Text="{Binding Price}" />
+
+        <!-- 添加上传按钮 -->
+        <Button Text="Upload Media" Command="{Binding UploadCommand}" />
+        <!-- 显示已上传的媒体文件 -->
+        <CollectionView ItemsSource="{Binding MediaUrls}" HeightRequest="100">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Label Text="{Binding .}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="Post Item" Command="{Binding PostItemCommand}" />
+    </StackLayout>
+</ContentPage>

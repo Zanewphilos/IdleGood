@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiApp2.ViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:MauiApp2"
+             x:Class="MauiApp2.View.ItemDetailPage"
+             Title="{Binding Item.Title}">
+  
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30">
+
+            <ImageButton Source="back_icon.png"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     Clicked="OnBackButtonClicked" /><VerticalStackLayout Spacing="20">
+    <!-- Existing layout -->
+
+</VerticalStackLayout>
+            
+
+            <!-- 绑定到 Item 的属性，移除 Item. 前缀 -->
+            <Image Source="{Binding Item.FirstImageUrl}" Aspect="AspectFill"/>
+            <Label Text="Video"
+           FontSize="24"
+           FontAttributes="Bold" />
+            <toolkit:MediaElement 
+            x:Name="mediaElement"
+                
+            Source="{Binding Item.FirstVideoUrl}"
+            ShouldShowPlaybackControls="True"
+            HeightRequest="300"
+            WidthRequest="400"
+            Aspect="AspectFit" />
+            
+            <Label Text="{Binding Item.Title}"
+                   FontSize="24"
+                   FontAttributes="Bold" />
+            <Label Text="{Binding Item.SellerName, StringFormat='Seller: {0}'}"
+                   FontSize="18"/>
+            <Label Text="{Binding Item.Description, StringFormat='Description: {0}'}"
+                   FontSize="18"/>
+
+            <Label Text="{Binding Item.AdDescription, StringFormat='AdDescription: {0}'}"
+            FontSize="18"/>
+
+            <Label Text="{Binding Item.Price, StringFormat='Price:£{0}'}"
+                   FontSize="Small"
+                   HorizontalOptions="Center" />
+            <Button Text="Buy Item" Command="{Binding BuyItemCommand}" />
+            <Button Text="Add Description" Command="{Binding AddDescriptionCommand}" IsVisible="{Binding IsCurrentUserTheSeller}" />
+            <Button Text="Delete Item" Command="{Binding DeleteItemCommand}" IsVisible="{Binding IsCurrentUserTheSeller}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
