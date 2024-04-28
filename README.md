@@ -1,10 +1,6 @@
 # second-hand-items-trading-software
 .Net MAUI for android/ IOS/PC
 
-**Application Features**
-
-![Features Table](https://github.com/Zanewphilos/IdleGood?tab=readme-ov-file/main/Features%20Table.png)
-
 
 
 
