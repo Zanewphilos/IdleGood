@@ -3,7 +3,7 @@
 
 **Application Features**
 
-![Features Table](https://https://github.com/Zanewphilos/IdleGood?tab=readme-ov-file/main/Features%20Table.png)
+![Features Table](https://github.com/Zanewphilos/IdleGood?tab=readme-ov-file/main/Features%20Table.png)
 
 
 
